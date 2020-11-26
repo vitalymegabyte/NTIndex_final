@@ -15,3 +15,4 @@ docker-compose up db
 ```
 docker-compose up
 ```
+Бэкенд доступен на localhost:5000, фронтенд на localhost:3000
