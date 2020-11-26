@@ -5,8 +5,14 @@
 ```
 docker-compose build
 ```
+Затем поднимаем БД:
+```
+docker-compose up db
+```
+После появления надписи "mysqld: ready for connections." можно останавливать контейнер
 ## Запуск
 После билда приложение поднимается с помощью
 ```
 docker-compose up
 ```
+Бэкенд доступен на localhost:5000, фронтенд на localhost:3000
