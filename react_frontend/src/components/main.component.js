@@ -4,13 +4,10 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Tab, Tabs, Container } from 'react-bootstrap';
 
-const Main = ({ setSections }) => {
+const Main = () => {
   return (
     <>
     </>
   );
 };
-const mapDispatchToProps = (dispatch) => ({
-  setSections: (sections) => dispatch(setSections(sections)),
-});
-export default connect(null, mapDispatchToProps)(Main);
+export default Main;
