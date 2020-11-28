@@ -9,7 +9,15 @@ docker-compose build
 ```
 docker-compose up db
 ```
-После появления надписи "mysqld: ready for connections." можно останавливать контейнер
+После появления надписи "mysqld: ready for connections." можно останавливать контейнер. Теперь надо выполнить миграции:
+```
+docker-compose run backend flask db upgrade
+```
+## Наполнение
+Первые, тестовые записи можно загрузить в систему с помощью команды
+```
+docker-compose run backend python3 seeds.py
+```
 ## Запуск
 После билда приложение поднимается с помощью
 ```
