@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import SectionReducer from './sections/sections.reducer';
+import ApplicationsReducer from './applications/applications.reducer';
 
 const persistConfig = {
   key: 'root',
@@ -11,7 +11,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  sections: SectionReducer,
+  applications: ApplicationsReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

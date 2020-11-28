@@ -9,3 +9,5 @@ flask_marshmallow
 marshmallow-sqlalchemy
 flask_cors
 flask_restful
+pymorphy2
+pymorphy2-dicts-ru

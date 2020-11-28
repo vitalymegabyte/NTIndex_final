@@ -4,8 +4,8 @@ services:
   frontend:
     build: ./react_frontend
     volumes:
-      - './react_frontend:/react_app'
       - '/react_app/node_modules'
+      - './react_frontend:/react_app'
     environment:
       - NODE_ENV=development
       - REACT_APP_BACKEND_BASEURL=http://localhost:5000
@@ -21,7 +21,6 @@ services:
     volumes:
       # - ${DATASETS_PATH}:/datasets
       - './flask_backend:/flask_backend'
-      - './Data:/Data'
     ports:
       - 5000:5000
     environment: 
@@ -37,4 +36,4 @@ services:
       - MYSQL_USER=vitaly
       - MYSQL_PASSWORD=12345678
       - MYSQL_ROOT_PASSWORD=0
-      - MYSQL_DATABASE=cadre
+      - MYSQL_DATABASE=ntindex
