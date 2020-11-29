@@ -12,5 +12,7 @@ COPY package.json /react_app/package.json
 RUN npm install
 RUN npm install react-scripts@3.4.1 -g
 
+COPY . .
+
 # start react_app
 CMD ["npm", "start"]

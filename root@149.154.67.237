@@ -5,7 +5,7 @@ services:
     image: vitalymegabyte/ntindex_frontend
     environment:
       - NODE_ENV=development
-      - REACT_APP_BACKEND_BASEURL=http://149.154.67.237:5000
+      - REACT_APP_BACKEND_BASEURL=62.109.24.120:5000
     ports:
       - 3000:3000
     stdin_open: true
