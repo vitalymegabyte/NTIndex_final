@@ -17,7 +17,7 @@ import pymorphy2
 import sys
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://vitaly:12345678@db/ntindex?charset=utf8'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://vitaly:12345678@db/ntindex?charset=utf8mb4'
 cors = CORS(app)
 
 db.init_app(app)
@@ -69,9 +69,16 @@ def search():
     for application in applications:
         output_app = application_schema.dump(application)
         output_app['tags'] = []
+        output_app['range_factor'] = 0
         for tag in application.tags:
-            if tag.show_in_list and tag.range_factor in query:
-                output_app['tags'].append(tag.name)
+            if tag.range_factor in query:
+                if tag.show_in_list:
+                    output_app['range_factor'] += 1
+                    output_app['tags'].append(tag.name)
+                else:
+                    output_app['range_factor'] += 2
         output.append(output_app)
-        
+    
+    output = sorted(output, key=lambda application : -len(application['tags']))
+
     return jsonify(output)

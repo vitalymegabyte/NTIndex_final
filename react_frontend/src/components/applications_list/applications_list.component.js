@@ -5,16 +5,17 @@ import { createStructuredSelector } from 'reselect';
 import { Form, Col, Row, CardColumns } from 'react-bootstrap';
 import AppCard from '../app_card/app_card.component';
 import { selectApplications } from '../../redux/applications/applications.selectors';
+import { CustomCardColumns } from './applications_list.style';
 
 const ApplicationsList = ({ applications }) => {
   return (
-    <CardColumns>
+    <CustomCardColumns>
       {applications
         ? applications.map((application) => (
-            <AppCard application={application} />
+            <AppCard application={application} key={application.id} />
           ))
         : ''}
-    </CardColumns>
+    </CustomCardColumns>
   );
 };
 

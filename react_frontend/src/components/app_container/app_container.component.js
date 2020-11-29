@@ -9,6 +9,7 @@ import {
   AppModal,
   ApplicationDescription,
   Tag,
+  StyledRow,
 } from './app_container.styles';
 import {
   selectShowWindow,
@@ -34,30 +35,48 @@ const AppContainer = ({ showWindow, setShowWindow, currentApplication }) => {
                 width={128}
               />
               <ShopRow>
-                <a href={application ? application.appstore_link : ''}>
+                <a
+                  href={
+                    application && application.appstore_link
+                      ? application.appstore_link
+                      : ''
+                  }
+                >
                   <Image src='/appstore.png' width={128} />
                 </a>
               </ShopRow>
               <ShopRow>
-                <a href={application ? application.gp_link : ''}>
+                <a
+                  href={
+                    application && application.gp_link
+                      ? application.gp_link
+                      : ''
+                  }
+                >
                   <Image src='/googleplay.png' width={128} />{' '}
                 </a>
               </ShopRow>
               <ShopRow>
-                <a href={application ? application.msstore_link : ''}>
+                <a
+                  href={
+                    application && application.msstore_link
+                      ? application.msstore_link
+                      : ''
+                  }
+                >
                   <Image src='/winstore.png' width={128} />{' '}
                 </a>
               </ShopRow>
             </Col>
             <Col md={9}>
               <Container>
-                <Row style={{ marginBottom: '2rem' }}>
+                <StyledRow>
                   <Col>
                     {application
                       ? application.tags.map((tag) => <Tag>{tag}</Tag>)
                       : ''}
                   </Col>
-                </Row>
+                </StyledRow>
                 <Row>
                   <Col>
                     <ApplicationDescription>

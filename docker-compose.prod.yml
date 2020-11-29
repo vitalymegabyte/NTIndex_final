@@ -2,25 +2,19 @@ version: '3.7'
 
 services:
   frontend:
-    build: ./react_frontend
-    volumes:
-      - '/react_app/node_modules'
-      - './react_frontend:/react_app'
+    image: vitalymegabyte/ntindex_frontend
     environment:
       - NODE_ENV=development
-      - REACT_APP_BACKEND_BASEURL=http://localhost:5000
+      - REACT_APP_BACKEND_BASEURL=62.109.24.120:5000
     ports:
       - 3000:3000
     stdin_open: true
 
   backend:
-    build: ./flask_backend
+    image: vitalymegabyte/ntindex_backend
     command: python -m flask run -h 0.0.0.0 -p 5000
     depends_on:
       - db
-    volumes:
-      # - ${DATASETS_PATH}:/datasets
-      - './flask_backend:/flask_backend'
     ports:
       - 5000:5000
     environment: 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import React from 'react';
-import { Modal } from 'react-bootstrap';
+import { Modal, Row } from 'react-bootstrap';
 
 export const ShopRow = styled.div`
   margin-top: 10px;
@@ -25,4 +25,11 @@ export const Tag = styled.span`
   padding: 0.5rem;
   color: white;
   margin: 0.25rem;
+`;
+
+export const StyledRow = styled(Row)`
+  margin-bottom: 2rem;
+  @media (max-width: 768px) {
+    margin-top: 2rem;
+  }
 `;

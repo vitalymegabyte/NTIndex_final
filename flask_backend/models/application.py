@@ -3,7 +3,7 @@ from models.tags_relations import tags_relations
 
 class Application(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), unique=True)
+    name = db.Column(db.String(200), unique=True)
     description = db.Column(db.String(5000))
     image_url = db.Column(db.String(1000))
     gp_link = db.Column(db.String(1000))

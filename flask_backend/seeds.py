@@ -3,6 +3,7 @@ from models.application import Application
 from models.tag import Tag
 from preprocessors.tag_preprocessor import add_tag
 from main import app
+from gp_parser import gp_parse
 
 app.app_context().push()
 
@@ -18,6 +19,7 @@ tag_seed1 = add_tag('с размытием')
 tag_seed2 = add_tag('с удалением шума')
 tag_seed3 = add_tag('графический редактор', show_in_list=False)
 tag_seed4 = add_tag('с фильтрами')
+tag_seed5 = add_tag('для цветокоррекции')
 if tag_seed1 != None:
     app_seed1.tags.append(tag_seed1)
 if tag_seed2 != None:
@@ -28,4 +30,44 @@ if tag_seed4 != None:
     app_seed1.tags.append(tag_seed4)
 
 db.session.add(app_seed1)
+
+graphic_redactors = gp_parse('графический редактор')
+for redactor in graphic_redactors:
+    has_now = Application.query.filter_by(name=redactor[0]).first()
+    if has_now == None:
+        redactor_seed = Application(
+            name=redactor[0],
+            image_url=redactor[1],
+            gp_link=redactor[2],
+            description=redactor[3]
+        )
+        redactor_seed.tags.append(tag_seed3)
+        if redactor_seed.name == 'Редактор фото':
+            redactor_seed.tags.append(tag_seed4)
+            redactor_seed.tags.append(tag_seed5)
+        db.session.add(redactor_seed)
+
+tag_seed6 = add_tag('с подсветкой синтаксиса')
+tag_seed7 = add_tag('с подсветкой кода')
+tag_seed8 = add_tag('с режимом чтения')
+tag_seed9 = add_tag('текстовый редактор', show_in_list=False)
+
+text_redactors = gp_parse('текстовый редактор')
+for redactor in text_redactors:
+    has_now = Application.query.filter_by(name=redactor[0]).first()
+    if has_now == None:
+        redactor_seed = Application(
+            name=redactor[0],
+            image_url=redactor[1],
+            gp_link=redactor[2],
+            description=redactor[3]
+        )
+        redactor_seed.tags.append(tag_seed9)
+        if redactor_seed.name == 'Code Editor' or redactor_seed.name == 'QuickEdit Текстовый редактор':
+            redactor_seed.tags.append(tag_seed6)
+            redactor_seed.tags.append(tag_seed7)
+        if redactor_seed.name == 'VLk Текстовый редактор':
+            redactor_seed.tags.append(tag_seed8)
+
+        db.session.add(redactor_seed)
 db.session.commit()
